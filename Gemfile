@@ -45,3 +45,7 @@ group :development do
   # gem "spring"
 end
 
+# JWT Authentication
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
+
