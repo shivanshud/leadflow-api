@@ -1,29 +1,24 @@
 class Api::V1::LeadsController < ApplicationController
   def index
-    leads = Lead.all
-
-    render json: leads
+    render json: Lead.all
   end
 
   def create
     lead = Lead.new(lead_params)
 
     if lead.save
-      assigned_agent = User.available_agents.first
-
-      if assigned_agent
-        Assignment.create!(
-          user: assigned_agent,
-          lead: lead,
-          assigned_at: Time.current,
-          status: 'assigned'
-        )
-      end
+      assigned_agent =
+        LeadAssignmentService
+          .new(lead)
+          .assign
 
       render json: {
-        message: "Lead created",
+        message: 'Lead created',
         lead: lead,
-        assigned_to: assigned_agent&.name
+        assigned_to: assigned_agent&.name,
+        status: assigned_agent ?
+          'assigned' :
+          'pending_assignment'
       }, status: :created
     else
       render json: {
@@ -40,7 +35,9 @@ class Api::V1::LeadsController < ApplicationController
       :phone,
       :status,
       :source,
-      :priority
+      :priority,
+      :language,
+      :region
     )
   end
 end
