@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_05_16_214907) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_16_220858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_16_214907) do
     t.string "languages", default: [], array: true
     t.string "regions", default: [], array: true
     t.integer "active_leads_count", default: 0
+    t.string "password_digest"
   end
 
   add_foreign_key "assignments", "leads"

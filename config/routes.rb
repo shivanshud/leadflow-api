@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :leads, only: [:create, :index]
+      post 'signup',
+        to: 'auth#signup'
+
+      post 'login',
+        to: 'auth#login'
+
+      resources :leads,
+        only: [:index, :create]
     end
   end
 end

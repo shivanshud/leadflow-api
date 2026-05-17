@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_secure_password
+  
   has_many :assignments, dependent: :destroy
   has_many :leads, through: :assignments
 
