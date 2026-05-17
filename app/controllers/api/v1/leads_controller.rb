@@ -1,5 +1,4 @@
 class Api::V1::LeadsController < ApplicationController
-  skip_before_action:authorize_request
   def index
     render json: Lead.all
   end
@@ -12,6 +11,11 @@ class Api::V1::LeadsController < ApplicationController
         LeadAssignmentService
           .new(lead)
           .assign
+      unless assigned_agent
+            LeadAssignmentRetryJob
+            .perform_async(lead.id)
+
+      end
 
       render json: {
         message: 'Lead created',
@@ -26,6 +30,14 @@ class Api::V1::LeadsController < ApplicationController
         errors: lead.errors.full_messages
       }, status: :unprocessable_entity
     end
+  end
+
+  def my_leads
+    leads =
+      @current_user
+        .leads
+
+    render json: leads
   end
 
   private

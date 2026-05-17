@@ -18,6 +18,11 @@ class User < ApplicationRecord
     senior: 2
   }
 
+  enum role: {
+    admin: 'admin',
+    agent: 'agent'
+  }
+
   scope :available_agents, -> {
     where(role: 'agent', available: true)
       .where("active_leads_count < capacity")
