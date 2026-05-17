@@ -1,25 +1,61 @@
-# README
+#LeadFlow API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A smart lead distribution backend built in Rails API.
 
-Things you may want to cover:
+## Features
+- JWT Authentication
+- Role-based access (Admin / Agent)
+- Smart lead assignment
+- Region matching
+- Language matching
+- Skill-based routing
+- Capacity-aware allocation
+- Redis + Sidekiq background jobs
 
-* Ruby version
+## Tech Stack
+- Ruby on Rails API
+- PostgreSQL
+- Redis
+- Sidekiq
+- JWT
+- Postman
 
-* System dependencies
+## Lead Assignment Logic
+Priority order:
+1. Agent availability
+2. Region match
+3. Language match
+4. Skill level match
+5. Lowest active lead count
+6. Capacity check
 
-* Configuration
+## API Endpoints
+POST /signup
+POST /login
+GET /users
+POST /users
+POST /leads
+GET /my_leads
+PATCH /availability
 
-* Database creation
+## Run Locally
+(bundle install etc)
 
-* Database initialization
+# Postman Collection - 
+https://documenter.getpostman.com/view/54924140/2sBXqRicJ4
 
-* How to run the test suite
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /signup | Create user |
+| POST | /login | Login |
+| GET | /users | Admin only |
+| POST | /leads | Create lead |
+| GET | /my_leads | Agent leads |
+| PATCH | /availability | Toggle status |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# leadflow-api
+## Future Improvements
+- Swagger docs
+- Docker
+- Rate limiting
+- Notifications
+- AI lead scoring
