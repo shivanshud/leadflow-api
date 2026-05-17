@@ -12,7 +12,8 @@ User.create!([
     active_leads_count: 1,
     skill_level: :senior,
     languages: ["Hindi", "English"],
-    regions: ["Mumbai", "Delhi"]
+    regions: ["Mumbai", "Delhi"],
+    password: "password123"
   },
 
   {
@@ -24,7 +25,8 @@ User.create!([
     active_leads_count: 0,
     skill_level: :mid,
     languages: ["English", "Tamil"],
-    regions: ["Chennai", "Bangalore"]
+    regions: ["Chennai", "Bangalore"],
+    password: "password123"
   },
 
   {
@@ -36,7 +38,9 @@ User.create!([
     active_leads_count: 2,
     skill_level: :junior,
     languages: ["Hindi", "Punjabi"],
-    regions: ["Delhi", "Jaipur"]
+    regions: ["Delhi", "Jaipur"],
+    password: "password123"
+    
   },
 
   {
@@ -48,7 +52,8 @@ User.create!([
     active_leads_count: 1,
     skill_level: :senior,
     languages: ["Gujarati", "Hindi", "English"],
-    regions: ["Ahmedabad", "Mumbai"]
+    regions: ["Ahmedabad", "Mumbai"],
+    password: "password123"
   },
 
   {
@@ -59,7 +64,8 @@ User.create!([
     capacity: 999,
     skill_level: :senior,
     languages: ["English"],
-    regions: ["Mumbai"]
+    regions: ["Mumbai"],
+    password: "password123"
   }
 ])
 
